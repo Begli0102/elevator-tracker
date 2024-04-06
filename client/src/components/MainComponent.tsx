@@ -17,12 +17,14 @@ const Main = ({
   return (
     <main className='main-container'>
       <div className='main-cards'>
-        <Card
-          elevators={elevators}
-          operationalClicked={operationalClicked}
-          warningClicked={warningClicked}
-          outOfOrderClicked={outOfOrderClicked}
-        />
+        {elevators.map((elevator: ElevatorsProps) => (
+          <Card
+            elevator={elevator}
+            operationalClicked={operationalClicked}
+            warningClicked={warningClicked}
+            outOfOrderClicked={outOfOrderClicked}
+          />
+        ))}
       </div>
     </main>
   )

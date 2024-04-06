@@ -3,14 +3,14 @@ import { ElevatorsProps } from '../interface'
 import CardDetails from './CardDetails'
 
 interface CardProps {
-  elevators: ElevatorsProps[]
+  elevator: ElevatorsProps
   operationalClicked: boolean
   warningClicked: boolean
   outOfOrderClicked: boolean
 }
 
 const Card = ({
-  elevators,
+  elevator,
   operationalClicked,
   warningClicked,
   outOfOrderClicked
@@ -46,27 +46,24 @@ const Card = ({
 
   return (
     <>
-      {elevators.map((elevator, _id) =>
-        (operationalClicked && elevator.state === 'operational') ||
-        (warningClicked && elevator.state === 'warning') ||
-        (outOfOrderClicked && elevator.state === 'out-of-order') ? (
-          <div
-            key={_id}
-            className='card'
-            style={{ backgroundColor: getBackgroundColor(elevator.state) }}
-            onClick={() => openModal(elevator)}
-          >
-            <div className='card-inner'>
-              <h3>{elevator.fabricationNumber}</h3>
-            </div>
-            <div className='card-inner'>
-              <h5>{elevator.state === 'out-of-order' && elevator.reason}</h5>
-              <h5>{elevator.state === 'warning' && elevator.warningMessage}</h5>
-              <h5>{elevator.state === 'operational' && 'operational'}</h5>
-            </div>
+      {(operationalClicked && elevator.state === 'operational') ||
+      (warningClicked && elevator.state === 'warning') ||
+      (outOfOrderClicked && elevator.state === 'out-of-order') ? (
+        <div
+          className='card'
+          style={{ backgroundColor: getBackgroundColor(elevator.state) }}
+          onClick={() => openModal(elevator)}
+        >
+          <div className='card-inner'>
+            <h3>{elevator.fabricationNumber}</h3>
           </div>
-        ) : null
-      )}
+          <div className='card-inner'>
+            <h5>{elevator.state === 'out-of-order' && elevator.reason}</h5>
+            <h5>{elevator.state === 'warning' && elevator.warningMessage}</h5>
+            <h5>{elevator.state === 'operational' && 'operational'}</h5>
+          </div>
+        </div>
+      ) : null}
       {isOpen && selectedElevator && (
         <CardDetails
           isOpen={isOpen}

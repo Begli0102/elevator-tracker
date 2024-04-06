@@ -26,7 +26,9 @@ const NavBar = ({ openSidebar }: NavbarProps) => {
           </button>
         ) : (
           <button className='navbar-button'>
-            <Link to='/signin'>Sign in</Link>
+            <Link style={{ textDecoration: 'none' }} to='/signin'>
+              Sign in
+            </Link>
           </button>
         )}
       </div>

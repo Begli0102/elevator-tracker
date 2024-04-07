@@ -1,15 +1,14 @@
 require('dotenv').config()
-const express = require('express')
+const express = require('express');
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 const userRoute = require('./routes/user')
 const elevatorRoute = require('./routes/elevator')
+console.log('Connection URI:', process.env.CONNECTION_URI)
 
 const mongoDB = mongoose
-  .connect(
-    'mongodb+srv://begliaga:Kaka4012@elevators.cvetq0g.mongodb.net/?retryWrites=true&w=majority&appName=Elevators'
-  )
+  .connect(process.env.CONNECTION_URI)
   .then(() => {
     console.log('DB Connection Successful!')
     const PORT = process.env.PORT || 8080

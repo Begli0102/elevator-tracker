@@ -63,7 +63,8 @@ const ChartSchema = new mongoose.Schema({
 })
 ````
 ### Define the combined schema for all elevator types with optional fields
-* const ElevatorSchema = new mongoose.Schema({
+````
+const ElevatorSchema = new mongoose.Schema({
   fabricationNumber: { type: String, required: true },
   address: { type: String, required: true },
   floorNumber: { type: Number, required: true },
@@ -76,7 +77,7 @@ const ChartSchema = new mongoose.Schema({
   reason: { type: String, required: false }, // Optional
   chart: { type: ChartSchema, required: false } // Optional
 })
-
+````
 ## Setup Instructions
 * Clone the repository from [GitHub Repo URL].
 * Navigate to the project directory.

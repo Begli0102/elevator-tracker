@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const userRoute = require('./routes/user')
 const elevatorRoute = require('./routes/elevator')
-console.log('Connection URI:', process.env.CONNECTION_URI)
 
 const mongoDB = mongoose
   .connect(process.env.CONNECTION_URI)

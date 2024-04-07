@@ -24,7 +24,6 @@
 * CardDetails Component: Shows  detailed information about a selected elevator inside a modal dialog.
 * Charts Component: Shows  detailed information about a selected elevator in a chart inside a modal dialog.
 * SideBar Component: Shows   information about total number of elevators and their status.
-* User Detail Component: Shows detailed information about a selected user.
 * RegisterPage: Allows users to register through a form.
 * LoginPage: Allows users to login through a form.
 * HomePage: Allows users to interact with dashboard.

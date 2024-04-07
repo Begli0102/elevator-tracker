@@ -45,7 +45,7 @@ The database schema for the users table is as follows:
   { timestamps: true }
 )
 ````
-The database charts schema for the elevators table is as follows:
+The database schema for the charts table is as follows:
 ````
 
 const ChartSchema = new mongoose.Schema({
@@ -62,7 +62,7 @@ const ChartSchema = new mongoose.Schema({
   ]
 })
 ````
-Define the combined schema for all elevator types with optional fields
+The database schema for the elevators table with optional fields is as follows: 
 ````
 const ElevatorSchema = new mongoose.Schema({
   fabricationNumber: { type: String, required: true },

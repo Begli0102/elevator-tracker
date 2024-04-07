@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
 import '../App.css'
-import { ElevatorsProps } from '../interface'
 import Main from '../components/MainComponent'
 
 const HomePage = () => {

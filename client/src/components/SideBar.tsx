@@ -13,11 +13,6 @@ interface SideBarProps {
   handleOutOfOrder: () => void
 }
 
-// Define the props for the component, expecting an array of strings
-interface Props {
-  states: string[]
-}
-
 const SideBar = ({
   openSidebarToggle,
   openSidebar,
@@ -97,20 +92,3 @@ const SideBar = ({
 }
 
 export default SideBar
-{
-  /* <li className='sidebar-list-item' onClick={handleClickOperational}>
-              <FaCheckCircle className='icon' style={{ color: '#2e7d32' }} />
-              Operational
-              <span style={{ color: '#2e7d32' }}>{count}</span>
-            </li>
-            <li className='sidebar-list-item' onClick={handleClickWarning}>
-              <IoMdWarning className='icon' style={{ color: '#ff6d00' }} />
-              Warning
-              <span style={{ color: '#ff6d00' }}>{count}</span>
-            </li>
-            <li className='sidebar-list-item' onClick={handleOutOfOrder}>
-              <BiErrorCircle className='icon' style={{ color: '#d50000' }} />{' '}
-              Out of order
-              <span style={{ color: '#d50000' }}>{count}</span>
-            </li> */
-}

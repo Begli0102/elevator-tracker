@@ -77,30 +77,3 @@ const Card = ({
 
 export default Card
 
-{
-  /* {elevators.map((elevator, index) => (
-        <div key={index}>
-          {operationalClicked && elevator.state === 'operational' ? (
-            <div className='card' style={{ backgroundColor: '#2e7d32' }}>
-              <div className='card-inner'>
-                <h3>{elevator.fabricationNumber}</h3>
-              </div>
-            </div>
-          ) : null}
-          {warningClicked && elevator.state === 'warning' ? (
-            <div className='card' style={{ backgroundColor: '#ff6d00' }}>
-              <div className='card-inner'>
-                <h3>{elevator.fabricationNumber}</h3>
-              </div>
-            </div>
-          ) : null}
-          {outOfOrderClicked && elevator.state === 'out-of-order' ? (
-            <div className='card' style={{ backgroundColor: '#d50000' }}>
-              <div className='card-inner'>
-                <h3>{elevator.fabricationNumber}</h3>
-              </div>
-            </div>
-          ) : null}
-        </div>
-      ))} */
-}

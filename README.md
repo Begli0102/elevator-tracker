@@ -22,12 +22,13 @@
 User List Component: Displays a list of all users fetched from the backend.
 User Detail Component: Shows detailed information about a selected user.
 User Form Component: Allows users to create or update user information through a form.
-
+    
 ## Database Schema
 The database schema for the users table is as follows:
-* const UserSchema = new mongoose.Schema(
+````
+  const UserSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
+     name: { type: String, required: true, trim: true },
     surname: { type: String, required: true, trim: true },
     email: {
       type: String,
@@ -43,8 +44,9 @@ The database schema for the users table is as follows:
 
   { timestamps: true }
 )
-
+````
 The database schema for the elevators table is as follows:
+````
 
 const ChartSchema = new mongoose.Schema({
   name: { type: String, required: false }, // Optional
@@ -59,7 +61,7 @@ const ChartSchema = new mongoose.Schema({
     }
   ]
 })
-
+````
 ### Define the combined schema for all elevator types with optional fields
 * const ElevatorSchema = new mongoose.Schema({
   fabricationNumber: { type: String, required: true },

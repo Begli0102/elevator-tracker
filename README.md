@@ -19,9 +19,15 @@
 * **POST /api/users/signin** Login a new user.
 
 ## Frontend Components
-User List Component: Displays a list of all users fetched from the backend.
-User Detail Component: Shows detailed information about a selected user.
-User Form Component: Allows users to create or update user information through a form.
+* Main Component: Displays a list of cards fetched from the backend.
+* Card Component: Shows  information about a selected elevator.
+* CardDetails Component: Shows  detailed information about a selected elevator inside a modal dialog.
+* Charts Component: Shows  detailed information about a selected elevator in a chart inside a modal dialog.
+* SideBar Component: Shows   information about total number of elevators and their status.
+* User Detail Component: Shows detailed information about a selected user.
+* RegisterPage: Allows users to register through a form.
+* LoginPage: Allows users to login through a form.
+* HomePage: Allows users to interact with dashboard.
     
 ## Database Schema
 The database schema for the users table is as follows:

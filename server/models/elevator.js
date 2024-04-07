@@ -31,5 +31,5 @@ const ElevatorSchema = new mongoose.Schema({
 })
 
 // Compile the model
-const Elevator = mongoose.model('Elevators', ElevatorSchema, 'elevators')
+const Elevator = mongoose.model('Elevator', ElevatorSchema)
 module.exports = Elevator

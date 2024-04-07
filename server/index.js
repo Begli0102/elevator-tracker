@@ -8,9 +8,15 @@ const elevatorRoute = require('./routes/elevator')
 
 const mongoDB = mongoose
   .connect(process.env.CONNECTION_URI)
-  .then(() => console.log('DB Connection Successful!'))
+  .then(() => {
+    console.log('DB Connection Successful!')
+    const PORT = process.env.PORT || 8080
+    app.listen(PORT, () => {
+      console.log(`The server is running on port: ${PORT}`)
+    })
+  })
   .catch(err => {
-    console.log(err.message)
+    console.error('Error connecting to database:', err.message)
   })
 
 app.use(cors())
@@ -23,9 +29,9 @@ app.get('/', (req, res) => {
   res.send('Hello to Elevators API')
 })
 
-const PORT = process.env.PORT || 8080
-app.listen(PORT, () => {
-  console.log(`The server is running on port: ${PORT}`)
-})
+// const PORT = process.env.PORT || 8080
+// app.listen(PORT, () => {
+//   console.log(`The server is running on port: ${PORT}`)
+// })
 
 module.exports = mongoDB

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { isAuthenticated } from '../recoil/recoil'
+import { useSetRecoilState } from 'recoil'
+import { authTokenState } from '../recoil/recoil'
 
 interface UserProps {
   email: string
@@ -13,16 +13,12 @@ const LoginPage = () => {
     password: ''
   })
   const [error, setError] = useState('')
-  const [authenticated, setAuthenticated] = useRecoilState<boolean>(
-    isAuthenticated
-  )
-  console.log(authenticated)
+  const setAuthToken = useSetRecoilState(authTokenState)
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // setAuthenticated(false)
 
     const { email, password } = user
 
@@ -42,6 +38,11 @@ const LoginPage = () => {
       const data = await response.json()
 
       if (response.ok) {
+        const { token } = data
+
+        localStorage.setItem('authToken', token)
+        setAuthToken(token)
+
         navigate('/')
 
         console.log('Sign in successful')

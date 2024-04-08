@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import './App.css'
+import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -11,6 +12,7 @@ function App () {
 
   return (
     <div className='app'>
+      <NavBar />
       <Routes>
         <Route
           path='/'

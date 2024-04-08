@@ -3,10 +3,10 @@ import { IoMdWarning } from 'react-icons/io'
 import { FaCheckCircle } from 'react-icons/fa'
 import { ElevatorsProps } from '../interface'
 import { RiDashboardFill } from 'react-icons/ri'
+import { useRecoilState } from 'recoil'
+import { sidebarState } from '../recoil/recoil'
 
 interface SideBarProps {
-  openSidebarToggle: boolean
-  openSidebar: () => void
   elevators: ElevatorsProps[]
   handleClickOperational: () => void
   handleClickWarning: () => void
@@ -14,13 +14,13 @@ interface SideBarProps {
 }
 
 const SideBar = ({
-  openSidebarToggle,
-  openSidebar,
   elevators,
   handleClickOperational,
   handleClickWarning,
   handleOutOfOrder
 }: SideBarProps) => {
+  const [openSidebarToggle, setOpenSidebarToggle] = useRecoilState(sidebarState)
+
   const singleElevatorState: string[] = elevators.map(elevator => {
     return elevator.state
   })
@@ -29,6 +29,10 @@ const SideBar = ({
   singleElevatorState.forEach(state => {
     stateCounts[state] = (stateCounts[state] || 0) + 1
   })
+
+  const openSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
 
   const renderStates = () => {
     return (

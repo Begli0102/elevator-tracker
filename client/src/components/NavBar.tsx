@@ -1,14 +1,16 @@
 import { BsJustify } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-import { authTokenState } from '../recoil/recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { authTokenState, sidebarState } from '../recoil/recoil'
 
-interface NavbarProps {
-  openSidebar: () => void
-}
-const NavBar = ({ openSidebar }: NavbarProps) => {
+const NavBar = () => {
   const authToken = useRecoilValue(authTokenState)
   const navigate = useNavigate()
+  const [openSidebarToggle, setOpenSidebarToggle] = useRecoilState(sidebarState)
+
+  const openSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
 
   const logOut = () => {
     localStorage.removeItem('authToken')

@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
 import '../App.css'
 import Main from '../components/MainComponent'
 
 const HomePage = () => {
   const [elevators, setElevators] = useState([])
-  const [openSidebarToggle, setOpenSidebarToggle] = useState<boolean>(false)
   const [operationalClicked, setOperationalClicked] = useState<boolean>(false)
   const [warningClicked, setWarningClicked] = useState<boolean>(false)
   const [outOfOrderClicked, setOutOfOrderClicked] = useState<boolean>(false)
-
-  const openSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
 
   const handleClickOperational = () => {
     setOperationalClicked(true)
@@ -45,10 +39,7 @@ const HomePage = () => {
 
   return (
     <div className='grid-container'>
-      <NavBar openSidebar={openSidebar} />
       <SideBar
-        openSidebarToggle={openSidebarToggle}
-        openSidebar={openSidebar}
         elevators={elevators}
         handleClickOperational={handleClickOperational}
         handleClickWarning={handleClickWarning}

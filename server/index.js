@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 require('dotenv').config()
 const app = express()
 const mongoose = require('mongoose')
@@ -7,7 +7,9 @@ const userRoute = require('./routes/user')
 const elevatorRoute = require('./routes/elevator')
 
 const mongoDB = mongoose
-  .connect(process.env.CONNECTION_URI)
+  .connect(
+    'mongodb+srv://begliaga:Kaka4012@elevators.cvetq0g.mongodb.net/?retryWrites=true&w=majority&appName=Elevators'
+  )
   .then(() => {
     console.log('DB Connection Successful!')
     const PORT = process.env.PORT || 8080

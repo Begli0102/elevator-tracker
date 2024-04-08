@@ -33,7 +33,9 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchElevators = async () => {
-      const response = await fetch('http://localhost:8080/api/elevators')
+      const response = await fetch(
+        'https://elevator-tracker-api.onrender.com/api/elevators'
+      )
       const data = await response.json()
       console.log(data.elevators)
       setElevators(data.elevators)

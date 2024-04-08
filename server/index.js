@@ -7,9 +7,7 @@ const userRoute = require('./routes/user')
 const elevatorRoute = require('./routes/elevator')
 
 const mongoDB = mongoose
-  .connect(
-    'mongodb+srv://begliaga:Kaka4012@elevators.cvetq0g.mongodb.net/?retryWrites=true&w=majority&appName=Elevators'
-  )
+  .connect(process.env.CONNECTION_URI)
   .then(() => {
     console.log('DB Connection Successful!')
     const PORT = process.env.PORT || 8080

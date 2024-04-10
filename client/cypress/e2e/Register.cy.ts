@@ -2,7 +2,7 @@
 
 describe('Register Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/signup')
+    cy.visit('https://elevator-tracker.vercel.app/signup')
   })
 
   it('displays the registration form', () => {
@@ -38,6 +38,6 @@ describe('Register Page', () => {
     cy.contains('Already have an account?').click()
 
     // Confirm redirection to the login page
-    cy.url().should('eq', 'http://localhost:3000/signin')
+    cy.url().should('eq', 'https://elevator-tracker.vercel.app/signin')
   })
 })

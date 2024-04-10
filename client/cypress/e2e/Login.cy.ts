@@ -2,7 +2,7 @@
 
 describe('Login Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/signin')
+    cy.visit('https://elevator-tracker.vercel.app/signin')
   })
 
   it('displays the login form', () => {
@@ -21,6 +21,6 @@ describe('Login Page', () => {
     cy.get('input[name="email"]').type(email)
     cy.get('input[name="password"]').type(password)
     cy.get('button[type="submit"]').click()
-    cy.url().should('eq', 'http://localhost:3000/')
+    cy.url().should('eq', 'https://elevator-tracker.vercel.app/')
   })
 })

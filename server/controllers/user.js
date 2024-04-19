@@ -3,69 +3,61 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const generateToken = require('../config/verifyToken')
 const { body, validationResult } = require('express-validator')
-const { json } = require('express')
 
 const validateUser = [
-  body('name', 'Username must be at least 4 characters').isLength({ min: 4 }),
-  body(
-    'surname',
-    'Username contains non alphanumeric characters - not allowed.'
-  ).isAlphanumeric(),
-  body('email', 'Email does not appear to be valid')
+  body('name')
+    .isLength({ min: 4 })
+    .withMessage('Username must be at least 4 characters'),
+  body('surname')
+    .isAlphanumeric()
+    .withMessage(
+      'Username contains non alphanumeric characters - not allowed.'
+    ),
+  body('email')
     .isEmail()
-    .normalizeEmail(),
-  body('password', 'Password is required')
+    .normalizeEmail()
+    .withMessage('Email does not appear to be valid'),
+  body('password')
     .not()
     .isEmpty()
     .isLength({ min: 4, max: 9 })
+    .withMessage('Password is required and must be between 4 to 9 characters')
 ]
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, surname, email, password } = req.body
 
-  if (!name || !surname || !email || !password) {
-    res.status(400).json({ error: 'Please add all fields' })
-    return
-  }
-
   // Validate user input
-  validateUser.forEach(validation => validation.run(req))
+  await Promise.all(validateUser.map(validation => validation.run(req)))
 
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
-    return
   }
 
   // Check if user exists
-  let user = await User.findOne({ email })
-  if (user) {
-    res.status(400).json({ error: 'User already exists' })
-    return
+  const existingUser = await User.findOne({ email })
+  if (existingUser) {
+    return res.status(400).json({ error: 'User already exists' })
   }
 
   // Hash password
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const hashedPassword = await bcrypt.hash(password, 10)
 
   // Create user
-  user = await User.create({
+  const newUser = await User.create({
     name,
     surname,
     email,
     password: hashedPassword
   })
 
-  if (user) {
-    res.status(201).json({
-      _id: user.id,
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      token: generateToken(user._id)
+  if (newUser) {
+    return res.status(201).json({
+      message: 'User successfully registered'
     })
   } else {
-    res.status(400).json({ error: 'Invalid user data' })
+    return res.status(400).json({ error: 'Invalid user data' })
   }
 })
 
@@ -76,7 +68,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email })
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+    return res.json({
       _id: user.id,
       name: user.name,
       surname: user.surname,
@@ -84,7 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id)
     })
   } else {
-    res.status(400).json({ error: 'Invalid credentials' })
+    return res.status(400).json({ error: 'Invalid credentials' })
   }
 })
 
